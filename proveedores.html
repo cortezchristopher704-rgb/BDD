@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de la Librería · Proveedores</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="brand-mark">
+      <div class="brand-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 5.5C3 5.5 6 4 9.5 4C11 4 12 4.5 12 4.5V19.5C12 19.5 11 19 9.5 19C6 19 3 20.5 3 20.5V5.5Z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M21 5.5C21 5.5 18 4 14.5 4C13 4 12 4.5 12 4.5V19.5C12 19.5 13 19 14.5 19C18 19 21 20.5 21 20.5V5.5Z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name">Librería</div>
+        <div class="brand-sub">Panel interno</div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="dashboard.html">Inicio</a>
+      <a href="clientes.html">Clientes</a>
+      <a href="libros.html">Libros</a>
+      <a href="autores.html">Autores</a>
+      <a href="categorias.html">Categorías</a>
+      <a href="ventas.html">Ventas</a>
+      <a href="proveedores.html" class="admin-only active">Proveedores</a>
+      <a href="compras.html" class="admin-only">Compras</a>
+      <a href="empleados.html" class="admin-only">Empleados</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="quien-soy">
+        <strong id="nombre-empleado">—</strong>
+        <span id="rol-empleado">—</span>
+      </div>
+      <button id="logout-btn" class="btn-logout">Cerrar sesión</button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <div class="page-header">
+      <div>
+        <h1>Proveedores</h1>
+        <p>Las empresas a las que la librería les compra libros.</p>
+      </div>
+      <button id="btn-nuevo" class="btn-pill btn-auto">+ Nuevo proveedor</button>
+    </div>
+
+    <div class="toolbar">
+      <input type="search" id="buscador" placeholder="Buscar por empresa, teléfono, correo o dirección...">
+      <select id="filtro-estatus">
+        <option value="todos">Todos</option>
+        <option value="activo" selected>Activos</option>
+        <option value="inactivo">Inactivos</option>
+      </select>
+    </div>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Empresa</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Dirección</th>
+            <th>Estatus</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tabla-body">
+          <tr><td colspan="6" class="empty-state">Cargando proveedores...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<div id="modal" class="modal-overlay">
+  <div class="modal">
+    <h2 id="modal-titulo">Nuevo proveedor</h2>
+
+    <div id="form-error" class="form-error"></div>
+
+    <form id="form-proveedor">
+      <div class="field">
+        <label for="nombre-empresa">Nombre de la empresa *</label>
+        <input type="text" id="nombre-empresa" maxlength="100" required>
+      </div>
+      <div class="field">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" maxlength="15">
+      </div>
+      <div class="field">
+        <label for="email">Correo</label>
+        <input type="email" id="email" maxlength="100">
+      </div>
+      <div class="field">
+        <label for="direccion">Dirección</label>
+        <input type="text" id="direccion" maxlength="150">
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="btn-cancelar" class="btn-secondary">Cancelar</button>
+        <button type="submit" id="btn-guardar" class="btn-pill">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/session.js"></script>
+<script src="js/proveedores.js"></script>
+</body>
+</html>
